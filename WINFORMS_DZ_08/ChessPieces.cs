@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Drawing;
 using System.Collections.Generic;
-using System.Drawing.Drawing2D;
 
 namespace WINFORMS_DZ_08.ChessPieces
 {
@@ -119,6 +118,11 @@ namespace WINFORMS_DZ_08.ChessPieces
             base.Move(pos);
             _moved = true;
         }
+
+        public override string ToString()
+        {
+            return $"Пешка ({(PColor == PieceColor.White ? "Белая" : "Чёрная")})";
+        }
     }
 
     public class Bishop : Piece
@@ -130,30 +134,29 @@ namespace WINFORMS_DZ_08.ChessPieces
         public override void Draw(Graphics g)
         {
             Point tileSize = ChessConstants.TileSize;
+            Point pos = new Point(Position.X * tileSize.X, Position.Y * tileSize.Y);
 
             Brush primaryBrush = GetPrimaryBrush();
             Pen secondaryPen = GetSecondaryPen();
 
-            Point pos = new Point(Position.X * tileSize.X, Position.Y * tileSize.Y);
-
             Rectangle rect1 = new Rectangle(
-                pos.X + 10, pos.Y + 48,
+                pos.X + 10, pos.Y + 50,
                 44, 12
             );
             Rectangle rect2 = new Rectangle(
-                pos.X + 18, pos.Y + 42,
+                pos.X + 18, pos.Y + 44,
                 28, 12
             );
             Rectangle rect3 = new Rectangle(
-                pos.X + 27, pos.Y + 24,
+                pos.X + 27, pos.Y + 26,
                 10, 26
             );
             Rectangle rect4 = new Rectangle(
-                pos.X + 22, pos.Y + 10,
+                pos.X + 22, pos.Y + 12,
                 20, 26
             );
             Rectangle rect5 = new Rectangle(
-                pos.X + 27, pos.Y + 4,
+                pos.X + 27, pos.Y + 6,
                 10, 16
             );
 
@@ -198,6 +201,11 @@ namespace WINFORMS_DZ_08.ChessPieces
 
             return moves;
         }
+
+        public override string ToString()
+        {
+            return $"Слон ({(PColor == PieceColor.White ? "Белый" : "Чёрный")})";
+        }
     }
 
     public class Knight : Piece
@@ -209,18 +217,56 @@ namespace WINFORMS_DZ_08.ChessPieces
         public override void Draw(Graphics g)
         {
             Point tileSize = ChessConstants.TileSize;
+            Point pos = new Point(Position.X * tileSize.X, Position.Y * tileSize.Y);
 
             Brush primaryBrush = GetPrimaryBrush();
-            Brush secondaryBrush = GetSecondaryBrush();
-            Pen primaryPen = GetPrimaryPen();
+            Brush blackBrush = ChessConstants.PieceBrushBlack;
             Pen secondaryPen = GetSecondaryPen();
 
             Rectangle rect1 = new Rectangle(
-                Position.X * tileSize.X, Position.Y * tileSize.Y,
-                tileSize.X, tileSize.Y
+                pos.X + 16, pos.Y + 38,
+                36, 38
             );
-            g.FillPie(primaryBrush, rect1, 270, 180);
-            g.DrawPie(secondaryPen, rect1, 270, 180);
+            Rectangle rect2 = new Rectangle(
+                pos.X + 8, pos.Y + 12,
+                46, 56
+            );
+            Rectangle rect3 = new Rectangle(
+                pos.X + 8, pos.Y + 12,
+                38, 40
+            );
+            Rectangle rect4 = new Rectangle(
+                pos.X + 8, pos.Y + 26,
+                12, 12
+            );
+            Rectangle rect5 = new Rectangle(
+                pos.X + 16, pos.Y + 16,
+                4, 5
+            );
+            Rectangle rect6 = new Rectangle(
+                pos.X + 8, pos.Y + 26,
+                3, 2
+            );
+            Rectangle rect7 = new Rectangle(
+               pos.X + 18, pos.Y + 7,
+               10, 12
+            );
+            Rectangle rect8 = new Rectangle(
+               pos.X + 30, pos.Y + 7,
+               10, 12
+            );
+            g.FillPie(primaryBrush, rect1, 180, 180);
+            g.DrawPie(secondaryPen, rect1, 180, 180);
+            g.FillPie(primaryBrush, rect4, 110, 350);
+            g.DrawPie(secondaryPen, rect4, 110, 350);
+            g.FillPie(primaryBrush, rect3, 180, 115);
+            g.DrawPie(secondaryPen, rect3, 180, 115);
+            g.FillPie(primaryBrush, rect2, 270, 120);
+            g.DrawPie(secondaryPen, rect2, 270, 120);
+            g.DrawEllipse(secondaryPen, rect5);
+            g.DrawEllipse(secondaryPen, rect6);
+            g.FillPie(blackBrush, rect7, 265, 100);
+            g.FillPie(blackBrush, rect8, 165, 100);
         }
 
         public override List<BoardPoint> GetValidMoves()
@@ -251,6 +297,11 @@ namespace WINFORMS_DZ_08.ChessPieces
 
             return moves;
         }
+
+        public override string ToString()
+        {
+            return $"Конь ({(PColor == PieceColor.White ? "Белый" : "Чёрный")})";
+        }
     }
 
     public class Rook : Piece
@@ -262,18 +313,60 @@ namespace WINFORMS_DZ_08.ChessPieces
         public override void Draw(Graphics g)
         {
             Point tileSize = ChessConstants.TileSize;
+            Point pos = new Point(Position.X * tileSize.X, Position.Y * tileSize.Y);
 
             Brush primaryBrush = GetPrimaryBrush();
-            Brush secondaryBrush = GetSecondaryBrush();
-            Pen primaryPen = GetPrimaryPen();
             Pen secondaryPen = GetSecondaryPen();
 
             Rectangle rect1 = new Rectangle(
-                Position.X * tileSize.X, Position.Y * tileSize.Y,
-                tileSize.X, tileSize.Y
+                pos.X + 12, pos.Y + 50,
+                40, 6
             );
-            g.FillPie(primaryBrush, rect1, 270, 180);
-            g.DrawPie(secondaryPen, rect1, 270, 180);
+            Rectangle rect2 = new Rectangle(
+                pos.X + 16, pos.Y + 44,
+                32, 12
+            );
+            Rectangle rect3 = new Rectangle(
+                pos.X + 20, pos.Y + 26,
+                24, 20
+            );
+            Rectangle rect4 = new Rectangle(
+                pos.X + 18, pos.Y + 16,
+                28, 12
+            );
+            Rectangle rect5 = new Rectangle(
+                pos.X + 16, pos.Y + 18,
+                32, 4
+            );
+            Rectangle rect6 = new Rectangle(
+                pos.X + 17, pos.Y + 12,
+                6, 6
+            );
+            Rectangle rect7 = new Rectangle(
+                pos.X + 29, pos.Y + 12,
+                6, 6
+            );
+            Rectangle rect8 = new Rectangle(
+                pos.X + 41, pos.Y + 12,
+                6, 6
+            );
+
+            g.FillRectangle(primaryBrush, rect1);
+            g.DrawRectangle(secondaryPen, rect1);
+            g.FillPie(primaryBrush, rect2, 180, 180);
+            g.DrawPie(secondaryPen, rect2, 180, 180);
+            g.FillPie(primaryBrush, rect4, 0, 180);
+            g.DrawPie(secondaryPen, rect4, 0, 180);
+            g.FillRectangle(primaryBrush, rect3);
+            g.DrawRectangle(secondaryPen, rect3);
+            g.FillRectangle(primaryBrush, rect5);
+            g.DrawRectangle(secondaryPen, rect5);
+            g.FillRectangle(primaryBrush, rect6);
+            g.DrawRectangle(secondaryPen, rect6);
+            g.FillRectangle(primaryBrush, rect7);
+            g.DrawRectangle(secondaryPen, rect7);
+            g.FillRectangle(primaryBrush, rect8);
+            g.DrawRectangle(secondaryPen, rect8);
         }
 
         public override List<BoardPoint> GetValidMoves()
@@ -315,6 +408,11 @@ namespace WINFORMS_DZ_08.ChessPieces
 
             return moves;
         }
+
+        public override string ToString()
+        {
+            return $"Ладья ({(PColor == PieceColor.White ? "Белая" : "Чёрная")})";
+        }
     }
 
     public class Queen : Piece
@@ -326,18 +424,64 @@ namespace WINFORMS_DZ_08.ChessPieces
         public override void Draw(Graphics g)
         {
             Point tileSize = ChessConstants.TileSize;
+            Point pos = new Point(Position.X * tileSize.X, Position.Y * tileSize.Y);
 
             Brush primaryBrush = GetPrimaryBrush();
-            Brush secondaryBrush = GetSecondaryBrush();
-            Pen primaryPen = GetPrimaryPen();
+            Pen blackPen = new Pen(ChessConstants.PieceBrushBlack, 2f);
             Pen secondaryPen = GetSecondaryPen();
 
             Rectangle rect1 = new Rectangle(
-                Position.X * tileSize.X, Position.Y * tileSize.Y,
-                tileSize.X, tileSize.Y
+                pos.X + 12, pos.Y + 48,
+                40, 16
             );
-            g.FillPie(primaryBrush, rect1, 270, 180);
-            g.DrawPie(secondaryPen, rect1, 270, 180);
+            Rectangle rect2 = new Rectangle(
+                pos.X + 18, pos.Y + 40,
+                28, 16
+            );
+            Rectangle rect3 = new Rectangle(
+                pos.X + 12, pos.Y + 32,
+                40, 28
+            );
+            Point[][] points = {
+                new Point[] {
+                    new Point(pos.X + 13, pos.Y + 40),
+                    new Point(pos.X + 11, pos.Y + 18),
+                    new Point(pos.X + 19, pos.Y + 36)
+                },
+                new Point[] {
+                    new Point(pos.X + 22, pos.Y + 36),
+                    new Point(pos.X + 21, pos.Y + 14),
+                    new Point(pos.X + 28, pos.Y + 34)
+                },
+                new Point[] {
+                    new Point(pos.X + 29, pos.Y + 34),
+                    new Point(pos.X + 32, pos.Y + 12),
+                    new Point(pos.X + 35, pos.Y + 34)
+                },
+                new Point[] {
+                    new Point(pos.X + 42, pos.Y + 36),
+                    new Point(pos.X + 43, pos.Y + 14),
+                    new Point(pos.X + 36, pos.Y + 34)
+                },
+                new Point[] {
+                    new Point(pos.X + 51, pos.Y + 40),
+                    new Point(pos.X + 53, pos.Y + 18),
+                    new Point(pos.X + 45, pos.Y + 36)
+                }
+            };
+
+            for (int i = 0; i < 5; ++i)
+            {
+                g.FillPolygon(primaryBrush, points[i]);
+                g.DrawPolygon(blackPen, points[i]);
+            }
+
+            g.FillPie(primaryBrush, rect3, 190, 160);
+            g.DrawPie(secondaryPen, rect3, 190, 160);
+            g.FillPie(primaryBrush, rect1, 185, 170);
+            g.DrawPie(secondaryPen, rect1, 185, 170);
+            g.FillPie(primaryBrush, rect2, 175, 190);
+            g.DrawPie(secondaryPen, rect2, 175, 190);
         }
 
         public override List<BoardPoint> GetValidMoves()
@@ -369,6 +513,11 @@ namespace WINFORMS_DZ_08.ChessPieces
 
             return moves;
         }
+
+        public override string ToString()
+        {
+            return $"Ферзь ({(PColor == PieceColor.White ? "Белый" : "Чёрный")})";
+        }
     }
 
     public class King : Piece
@@ -380,18 +529,59 @@ namespace WINFORMS_DZ_08.ChessPieces
         public override void Draw(Graphics g)
         {
             Point tileSize = ChessConstants.TileSize;
+            Point pos = new Point(Position.X * tileSize.X, Position.Y * tileSize.Y);
 
             Brush primaryBrush = GetPrimaryBrush();
-            Brush secondaryBrush = GetSecondaryBrush();
-            Pen primaryPen = GetPrimaryPen();
+            Pen blackPen = new Pen(ChessConstants.PieceBrushBlack, 2f);
             Pen secondaryPen = GetSecondaryPen();
 
             Rectangle rect1 = new Rectangle(
-                Position.X * tileSize.X, Position.Y * tileSize.Y, 
-                tileSize.X, tileSize.Y
+                pos.X + 14, pos.Y + 48,
+                36, 16
             );
-            g.FillPie(primaryBrush, rect1, 270, 180);
-            g.DrawPie(secondaryPen, rect1, 270, 180);
+            Rectangle rect2 = new Rectangle(
+                pos.X + 16, pos.Y + 42,
+                32, 14
+            );
+            Rectangle rect3 = new Rectangle(
+                pos.X + 16, pos.Y + 36,
+                32, 14
+            );
+            Rectangle rect4 = new Rectangle(
+                pos.X + 8, pos.Y + 18,
+                24, 24
+            );
+            Rectangle rect5 = new Rectangle(
+                pos.X + 32, pos.Y + 18,
+                24, 24
+            );
+            Rectangle rect6 = new Rectangle(
+                pos.X + 27, pos.Y + 14,
+                10, 20
+            );
+            Rectangle rect7 = new Rectangle(
+                pos.X + 27, pos.Y + 9,
+                10, 2
+            );
+            Rectangle rect8 = new Rectangle(
+                pos.X + 31, pos.Y + 6,
+                2, 10
+            );
+
+            g.DrawEllipse(blackPen, rect7);
+            g.DrawEllipse(blackPen, rect8);
+            g.FillEllipse(primaryBrush, rect6);
+            g.DrawEllipse(blackPen, rect6);
+            g.FillEllipse(primaryBrush, rect4);
+            g.DrawEllipse(secondaryPen, rect4);
+            g.FillEllipse(primaryBrush, rect5);
+            g.DrawEllipse(secondaryPen, rect5);
+            g.FillPie(primaryBrush, rect1, 190, 160);
+            g.DrawPie(blackPen, rect1, 190, 160);
+            g.FillPie(primaryBrush, rect2, 170, 200);
+            g.DrawPie(secondaryPen, rect2, 170, 200);
+            g.FillPie(primaryBrush, rect3, 170, 200);
+            g.DrawPie(secondaryPen, rect3, 170, 200);
         }
 
         public override List<BoardPoint> GetValidMoves()
@@ -401,27 +591,24 @@ namespace WINFORMS_DZ_08.ChessPieces
             List<BoardPoint> occupiedByTeam = PColor == PieceColor.White
                                          ? Parent.GetOccupiedByWhite()
                                          : Parent.GetOccupiedByBlack();
-            List<BoardPoint> occupiedByEnemies = PColor == PieceColor.White
-                                            ? Parent.GetOccupiedByBlack()
-                                            : Parent.GetOccupiedByWhite();
 
             for (int y = -1; y <= 1; ++y)
             {
                 for (int x = -1; x <= 1; ++x)
                 {
-                    if (x == 0 && y == 0)
-                        continue;
-
                     BoardPoint pos = new BoardPoint(Position.X + x, Position.Y + y);
                     if (occupiedByTeam.Contains(pos))
-                        break;
+                        continue;
                     moves.Add(pos);
-                    if (occupiedByEnemies.Contains(pos))
-                        break;
                 }
             }
 
             return moves;
+        }
+
+        public override string ToString()
+        {
+            return $"Король ({(PColor == PieceColor.White ? "Белый" : "Чёрный")})";
         }
     }
 }

@@ -61,5 +61,11 @@ namespace WINFORMS_DZ_08
         {
             return !(p == other);
         }
+
+        public override string ToString()
+        {
+            return Convert.ToChar(X + (int)'A') 
+                + (ChessConstants.BoardSize.Y - Y).ToString();
+        }
     }
 }
