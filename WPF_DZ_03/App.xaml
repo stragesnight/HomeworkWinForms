@@ -1,0 +1,39 @@
+﻿<Application x:Class="WPF_DZ_03.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:WPF_DZ_03"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Consolas"/>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="TextAlignment" Value="Right"/>
+        </Style>
+        <Style TargetType="Button" 
+               x:Name="GenericButton"
+               x:Key="GenericButton">
+            <Setter Property="FontFamily" Value="Consolas"/>
+            <Setter Property="TextBlock.FontSize" Value="24"/>
+            <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="MinHeight" Value="16"/>
+        </Style>
+        <Style TargetType="Button" 
+               x:Name="NumericButton" 
+               BasedOn="{StaticResource GenericButton}">
+            <Setter Property="Background" Value="WhiteSmoke"/>
+        </Style>
+        <Style TargetType="Button" 
+               x:Name="OperationButton" 
+               x:Key="OperationButton"
+               BasedOn="{StaticResource GenericButton}">
+            <Setter Property="Background" Value="#b8c8ff"/>
+        </Style>
+        <Style TargetType="Button" 
+               x:Name="SpecialButton" 
+               x:Key="SpecialButton"
+               BasedOn="{StaticResource GenericButton}">
+            <Setter Property="Background" Value="#fc7"/>
+        </Style>
+    </Application.Resources>
+</Application>
